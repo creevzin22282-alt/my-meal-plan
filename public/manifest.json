@@ -1,0 +1,15 @@
+{
+  "short_name": "食費プラン",
+  "name": "月25,000円 食費プラン",
+  "icons": [
+    {
+      "src": "favicon.ico",
+      "sizes": "64x64",
+      "type": "image/x-icon"
+    }
+  ],
+  "start_url": ".",
+  "display": "standalone",
+  "theme_color": "#0ea5e9",
+  "background_color": "#f0f9ff"
+}
