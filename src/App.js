@@ -9,15 +9,16 @@ const D_ITEMS   = [
   { id:3, label:"夕食（家）",      icon:"🌙", amount:6900, color:"#0ea5e9", note:"¥230 × 30日" },
   { id:4, label:"ランチ外食",      icon:"🍜", amount:6400, color:"#8b5cf6", note:"¥800 × 8回" },
   { id:5, label:"夕食外食",        icon:"🍣", amount:3000, color:"#ec4899", note:"¥1,500 × 2回" },
-  { id:6, label:"サプリ",          icon:"💊", amount:1500, color:"#f59e0b", note:"月額目安" },
+  { id:6, label:"サプリ",          icon:"💊", amount:1300, color:"#f59e0b", note:"プロテイン＋マルチビタミン＋オメガ3" },
 ];
 const D_DINNERS = [
-  { id:1, name:"鶏むね塩麹焼き定食",emoji:"🐔",main:"鶏むね肉100g（塩麹漬け）",sides:["冷凍ブロッコリー蒸し","豆腐のみそ汁"],protein:42,cost:210,tip:"塩麹に漬けると柔らかく仕上がる。翌日弁当に◎",color:"#10b981" },
-  { id:2, name:"鯖缶大根おろし定食",emoji:"🐟",main:"鯖水煮缶1缶",sides:["大根おろし","もやしナムル","わかめスープ"],protein:28,cost:160,tip:"鯖缶の汁もスープに使えばDHA丸ごと摂れる",color:"#0ea5e9" },
-  { id:3, name:"豆腐チャンプルー",  emoji:"🥚",main:"木綿豆腐1丁＋卵2個＋もやし",sides:["小松菜ごま和え"],protein:30,cost:140,tip:"卵でとじるとボリューム感アップ。醤油少なめで",color:"#8b5cf6" },
-  { id:4, name:"鶏むね蒸しサラダ",  emoji:"🥗",main:"鶏むね肉100g（茹でてほぐす）",sides:["レタス・アボカド","きのこスープ"],protein:38,cost:200,tip:"ポン酢＋ごま油で味付け。食べ応え◎",color:"#f97316" },
-  { id:5, name:"豚もも生姜炒め",    emoji:"🥩",main:"豚もも肉80g（生姜・醤油少なめ）",sides:["ほうれん草炒め","豆腐スープ"],protein:28,cost:230,tip:"豚もも＝脂少なめ。週1〜2回まで",color:"#ec4899" },
-  { id:6, name:"具だくさん卵スープ",emoji:"🍲",main:"卵2個＋鶏むね50g",sides:["きのこ・豆腐・わかめスープ","ほうれん草炒め"],protein:26,cost:130,tip:"具を多くすれば満腹感◎。節約デーに最適",color:"#f59e0b" },
+  { id:1, name:"鶏むね塩麹焼き定食",   emoji:"🐔", main:"鶏むね肉100g（塩麹漬け）",           sides:["冷凍ブロッコリー蒸し","豆腐のみそ汁"],           protein:42, cost:210, tip:"塩麹に漬けると柔らかく仕上がる。翌日弁当に◎",         color:"#10b981" },
+  { id:2, name:"鯖缶大根おろし定食",   emoji:"🐟", main:"鯖水煮缶1缶",                         sides:["大根おろし","もやしナムル","わかめスープ"],       protein:28, cost:160, tip:"鯖缶の汁もスープに使えばDHA丸ごと摂れる",           color:"#0ea5e9" },
+  { id:3, name:"豆腐アボカドチキンサラダ",emoji:"🥗",main:"鶏むね肉80g（茹で）＋豆腐1/2丁＋アボカド1/2",sides:["レタス・きゅうり","レモン醤油ドレッシング"], protein:36, cost:220, tip:"豆腐は水切りして食べ応えアップ。アボカドの良質脂質がダイエットをサポート", color:"#22c55e" },
+  { id:4, name:"鶏むね蒸しサラダ",     emoji:"🥗", main:"鶏むね肉100g（茹でてほぐす）",        sides:["レタス・アボカド","きのこスープ"],               protein:38, cost:200, tip:"ポン酢＋ごま油で味付け。食べ応え◎",                 color:"#f97316" },
+  { id:5, name:"豆腐チャンプルー",     emoji:"🥚", main:"木綿豆腐1丁＋卵2個＋もやし",          sides:["小松菜ごま和え"],                               protein:30, cost:140, tip:"卵でとじるとボリューム感アップ。醤油少なめで",       color:"#8b5cf6" },
+  { id:6, name:"豚もも生姜炒め",       emoji:"🥩", main:"豚もも肉80g（生姜・醤油少なめ）",     sides:["ほうれん草炒め","豆腐スープ"],                   protein:28, cost:230, tip:"豚もも＝脂少なめ。週1〜2回まで",                   color:"#ec4899" },
+  { id:7, name:"具だくさん卵スープ",   emoji:"🍲", main:"卵2個＋鶏むね50g",                    sides:["きのこ・豆腐・わかめスープ","ほうれん草炒め"],   protein:26, cost:130, tip:"具を多くすれば満腹感◎。節約デーに最適",             color:"#f59e0b" },
 ];
 const D_FIXED   = [
   { id:1, name:"家賃",   amount:65000, dueDate:25, color:"#0ea5e9" },
@@ -26,6 +27,24 @@ const D_FIXED   = [
 ];
 const D_MEALS   = { breakfast:"", lunch:"", dinner:"" };
 const D_COMMENT = "今月も節約がんばろう！";
+
+// ── 7日ローテーション ─────────────────────────────────────────────────────────
+const D_WEEKLY_MENU = [
+  { day:"日", emoji:"☀️", breakfast:"オートミール＋ゆで卵2個",      lunch:"家で軽く（残り物）",    dinner:"具だくさん卵スープ定食", isEatOut:false },
+  { day:"月", emoji:"🌅", breakfast:"ヨーグルト(無糖)＋バナナ",    lunch:"夜の残り弁当",           dinner:"鶏むね塩麹焼き定食",    isEatOut:false },
+  { day:"火", emoji:"🌞", breakfast:"卵かけご飯(少量)＋納豆",      lunch:"夜の残り弁当",           dinner:"鯖缶大根おろし定食",    isEatOut:false },
+  { day:"水", emoji:"🌤", breakfast:"オートミール＋ゆで卵2個",      lunch:"夜の残り弁当",           dinner:"豆腐アボカドチキンサラダ", isEatOut:false },
+  { day:"木", emoji:"🌈", breakfast:"ヨーグルト(無糖)＋プロテイン",lunch:"夜の残り弁当",           dinner:"鶏むね蒸しサラダ",      isEatOut:false },
+  { day:"金", emoji:"🌙", breakfast:"卵スクランブル2個＋納豆",      lunch:"夜の残り弁当",           dinner:"豆腐チャンプルー",      isEatOut:false },
+  { day:"土", emoji:"🎉", breakfast:"オートミール＋ゆで卵2個",      lunch:"家で軽く（残り物）",    dinner:"外食OK（¥1,500以内目安）", isEatOut:true  },
+];
+
+// ── コスパサプリ ──────────────────────────────────────────────────────────────
+const D_SUPPLEMENTS = [
+  { name:"ホエイプロテイン", cost:600, note:"朝 or 夕食後 20g。筋肉維持＋腹持ち◎", color:"#0ea5e9", emoji:"🥛" },
+  { name:"マルチビタミン",   cost:300, note:"朝食後1錠。食事の栄養ギャップを補う", color:"#10b981", emoji:"💊" },
+  { name:"オメガ3（魚油）",  cost:400, note:"夕食後1〜2錠。鯖缶2〜3回/週で代替可", color:"#8b5cf6", emoji:"🐟" },
+];
 
 const TAG_PALETTE = ["#0ea5e9","#10b981","#f97316","#8b5cf6","#ec4899","#f59e0b","#ef4444","#06b6d4"];
 
@@ -132,6 +151,7 @@ export default function App() {
   const [openDinner, setOpenDinner] = useState(null);
   const [filterCat,  setFilterCat]  = useState("all");
   const [tagInput,   setTagInput]   = useState({});
+  const [showWeekMenu, setShowWeekMenu] = useState(false);
   const fileRef = useRef();
 
   // Persisted state
@@ -173,6 +193,14 @@ export default function App() {
   const daysInMonth = new Date(today.getFullYear(), today.getMonth() + 1, 0).getDate();
   const daysLeft = daysInMonth - todayDay;
   const dateStr  = `${today.getFullYear()}年${today.getMonth() + 1}月${todayDay}日`;
+
+  // Rotation
+  const todayRotation = D_WEEKLY_MENU[today.getDay()];
+  const displayMeals  = {
+    breakfast: meals.breakfast || todayRotation.breakfast,
+    lunch:     meals.lunch     || todayRotation.lunch,
+    dinner:    meals.dinner    || todayRotation.dinner,
+  };
 
   // Upcoming fixed (within 7 days)
   const upcoming = fixedCosts.filter(f => {
@@ -279,25 +307,104 @@ export default function App() {
             </div>
           </div>
 
-          {/* 今日のメニュー */}
+          {/* 今日のメニュー（ローテーション） */}
           <div style={card}>
-            <div style={{ fontSize:12, fontWeight:700, color:"#64748b", marginBottom:12 }}>🍽 今日のメニュー</div>
-            {[["朝食","🌅", meals.breakfast],["昼食","🌞", meals.lunch],["夕食","🌙", meals.dinner]].map(([label, icon, val]) => (
-              <div key={label} style={{ display:"flex", alignItems:"center", gap:10, marginBottom:10 }}>
+            <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:12 }}>
+              <div style={{ fontSize:12, fontWeight:700, color:"#64748b" }}>🍽 今日のメニュー</div>
+              <div style={{
+                display:"inline-flex", alignItems:"center", gap:4,
+                background: todayRotation.isEatOut ? "#fef3c7" : "#f0fdf4",
+                color: todayRotation.isEatOut ? "#d97706" : "#059669",
+                fontSize:10, fontWeight:700, padding:"3px 10px", borderRadius:99,
+              }}>
+                {todayRotation.emoji} {todayRotation.day}曜日ローテ
+              </div>
+            </div>
+
+            {[
+              ["朝食","🌅", displayMeals.breakfast],
+              ["昼食","🌞", displayMeals.lunch],
+              ["夕食","🌙", displayMeals.dinner],
+            ].map(([label, icon, val]) => (
+              <div key={label} style={{
+                display:"flex", alignItems:"flex-start", gap:10, marginBottom:10,
+                padding:"10px 12px", borderRadius:10,
+                background: label === "夕食" ? "#f0fdf4" : "#f8fafc",
+                border: label === "夕食" ? "1px solid #bbf7d0" : "1px solid #f1f5f9",
+              }}>
                 <div style={{
-                  width:34, height:34, borderRadius:9, background:"#f0f9ff",
+                  width:34, height:34, borderRadius:9,
+                  background: label === "夕食" ? "#dcfce7" : "#f0f9ff",
                   display:"flex", alignItems:"center", justifyContent:"center", fontSize:17, flexShrink:0,
                 }}>{icon}</div>
-                <div>
-                  <div style={{ fontSize:10, color:"#94a3b8", marginBottom:1 }}>{label}</div>
-                  <div style={{ fontSize:14, fontWeight:600, color: val ? "#1e293b" : "#cbd5e1" }}>
-                    {val || "未設定"}
+                <div style={{ flex:1 }}>
+                  <div style={{ fontSize:10, color:"#94a3b8", marginBottom:2, display:"flex", justifyContent:"space-between" }}>
+                    <span>{label}</span>
+                    {label === "夕食" && <span style={{ color:"#16a34a", fontWeight:700 }}>低糖質・高タンパク</span>}
                   </div>
+                  <div style={{ fontSize:13, fontWeight:600, color:"#1e293b", lineHeight:1.5 }}>{val}</div>
                 </div>
               </div>
             ))}
-            <div style={{ fontSize:10, color:"#94a3b8", textAlign:"right", marginTop:4 }}>
-              ※ 設定タブから編集できます
+
+            {/* 今週のローテ展開 */}
+            <button
+              onClick={() => setShowWeekMenu(v => !v)}
+              style={{
+                width:"100%", padding:"8px 0", background:"none", border:"1px dashed #cbd5e1",
+                borderRadius:8, fontSize:11, color:"#64748b", cursor:"pointer", marginTop:4,
+              }}
+            >
+              {showWeekMenu ? "▲ 今週のメニューを閉じる" : "▼ 今週のメニューを見る"}
+            </button>
+
+            {showWeekMenu && (
+              <div style={{ marginTop:10 }}>
+                {D_WEEKLY_MENU.map((m, i) => (
+                  <div key={i} style={{
+                    display:"flex", alignItems:"center", gap:8,
+                    padding:"7px 10px", borderRadius:8, marginBottom:4,
+                    background: i === today.getDay() ? "#f0fdf4" : "#f8fafc",
+                    border: i === today.getDay() ? "1px solid #86efac" : "1px solid #f1f5f9",
+                  }}>
+                    <span style={{ fontSize:14, width:22, textAlign:"center" }}>{m.emoji}</span>
+                    <div style={{ flex:1, minWidth:0 }}>
+                      <span style={{ fontSize:10, fontWeight:700, color: i === today.getDay() ? "#16a34a" : "#94a3b8", marginRight:6 }}>
+                        {m.day}
+                      </span>
+                      <span style={{
+                        fontSize:11, color:"#475569",
+                        overflow:"hidden", textOverflow:"ellipsis", whiteSpace:"nowrap",
+                        display:"inline-block", maxWidth:"85%",
+                      }}>
+                        {m.dinner}
+                      </span>
+                    </div>
+                    {m.isEatOut && (
+                      <span style={{ fontSize:9, background:"#fef3c7", color:"#d97706", fontWeight:700, padding:"2px 6px", borderRadius:99, flexShrink:0 }}>外食</span>
+                    )}
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+
+          {/* コスパサプリ */}
+          <div style={card}>
+            <div style={{ fontSize:12, fontWeight:700, color:"#64748b", marginBottom:10 }}>💊 コスパよしサプリ（月計 ¥{D_SUPPLEMENTS.reduce((s,x)=>s+x.cost,0).toLocaleString()}）</div>
+            <div style={{ display:"flex", gap:6, flexWrap:"wrap" }}>
+              {D_SUPPLEMENTS.map((s, i) => (
+                <div key={i} style={{
+                  flex:"1 1 auto", minWidth:120,
+                  background: s.color + "10", border:`1px solid ${s.color}30`,
+                  borderRadius:10, padding:"9px 10px",
+                }}>
+                  <div style={{ fontSize:16, marginBottom:4 }}>{s.emoji}</div>
+                  <div style={{ fontSize:11, fontWeight:700, color: s.color, marginBottom:2 }}>{s.name}</div>
+                  <div style={{ fontSize:10, color:"#64748b", lineHeight:1.5 }}>{s.note}</div>
+                  <div style={{ fontSize:11, fontWeight:800, color: s.color, marginTop:4 }}>¥{s.cost}/月</div>
+                </div>
+              ))}
             </div>
           </div>
 
@@ -650,9 +757,24 @@ export default function App() {
       {/* ══════ 夕食タブ ══════ */}
       {tab === "dinner" && (
         <div>
+          {/* ダイエットポリシー */}
+          <div style={{
+            background:"linear-gradient(135deg,#f0fdf4,#f0f9ff)",
+            border:"1px solid #bbf7d0", borderRadius:14, padding:"12px 14px", marginBottom:14,
+            fontSize:12, color:"#166534", lineHeight:1.8,
+          }}>
+            <div style={{ fontWeight:700, marginBottom:4, fontSize:13 }}>🥗 夕食ルール（ダイエット方針）</div>
+            <span style={{ background:"#dcfce7", borderRadius:6, padding:"1px 7px", marginRight:6, fontWeight:700 }}>低糖質</span>
+            炭水化物は控えめ（ご飯なし or 少量）<br />
+            <span style={{ background:"#dbeafe", borderRadius:6, padding:"1px 7px", marginRight:6, fontWeight:700 }}>高タンパク</span>
+            鶏むね・鯖・卵・豆腐を中心に<br />
+            <span style={{ background:"#ede9fe", borderRadius:6, padding:"1px 7px", marginRight:6, fontWeight:700 }}>栄養◎</span>
+            野菜・海藻・きのこを必ず1品以上
+          </div>
+
           {!editMode && (
             <div style={{ fontSize:12, color:"#94a3b8", marginBottom:14, textAlign:"center" }}>
-              6パターンローテーション — タップで詳細表示
+              7パターンローテーション — タップで詳細表示
             </div>
           )}
           {editMode && (
@@ -753,6 +875,7 @@ export default function App() {
                   <div style={{ display:"flex", gap:8, marginTop:10, flexWrap:"wrap" }}>
                     <Tag color={d.color}>🥩 タンパク質 {d.protein}g</Tag>
                     <Tag color="#0369a1">糖質 低</Tag>
+                    <Tag color="#16a34a">ダイエット◎</Tag>
                   </div>
                 </div>
               )}
@@ -768,16 +891,43 @@ export default function App() {
           )}
 
           {!editMode && (
-            <div style={{
-              background:"#f0fdf4", border:"1px solid #bbf7d0",
-              borderRadius:14, padding:14, marginTop:4,
-              fontSize:12, color:"#166534", lineHeight:1.9,
-            }}>
-              <div style={{ fontWeight:700, marginBottom:6 }}>🍱 弁当化のコツ</div>
-              夕食を少し多めに作って詰めるだけ。<br />
-              鶏むね・鯖缶・卵は冷めても美味しい。<br />
-              ドレッシングは別容器で持参すると◎
-            </div>
+            <>
+              {/* コスパサプリ */}
+              <div style={{
+                background:"#f0f9ff", border:"1px solid #bae6fd",
+                borderRadius:14, padding:14, marginTop:4, marginBottom:10,
+              }}>
+                <div style={{ fontSize:13, fontWeight:700, color:"#0369a1", marginBottom:10 }}>
+                  💊 コスパよしサプリ（月計 ¥{D_SUPPLEMENTS.reduce((s,x)=>s+x.cost,0).toLocaleString()}）
+                </div>
+                {D_SUPPLEMENTS.map((s, i) => (
+                  <div key={i} style={{
+                    display:"flex", alignItems:"center", gap:10,
+                    padding:"8px 10px", borderRadius:9, marginBottom:6,
+                    background:"#fff", border:`1px solid ${s.color}25`,
+                  }}>
+                    <span style={{ fontSize:20, flexShrink:0 }}>{s.emoji}</span>
+                    <div style={{ flex:1 }}>
+                      <div style={{ fontSize:12, fontWeight:700, color:s.color }}>{s.name}</div>
+                      <div style={{ fontSize:10, color:"#64748b", lineHeight:1.5 }}>{s.note}</div>
+                    </div>
+                    <div style={{ fontSize:13, fontWeight:800, color:s.color, flexShrink:0 }}>¥{s.cost}/月</div>
+                  </div>
+                ))}
+              </div>
+
+              {/* 弁当化のコツ */}
+              <div style={{
+                background:"#f0fdf4", border:"1px solid #bbf7d0",
+                borderRadius:14, padding:14,
+                fontSize:12, color:"#166534", lineHeight:1.9,
+              }}>
+                <div style={{ fontWeight:700, marginBottom:6 }}>🍱 弁当化のコツ</div>
+                夕食を少し多めに作って詰めるだけ。<br />
+                鶏むね・鯖缶・卵は冷めても美味しい。<br />
+                ドレッシングは別容器で持参すると◎
+              </div>
+            </>
           )}
         </div>
       )}
@@ -785,19 +935,30 @@ export default function App() {
       {/* ══════ 設定タブ ══════ */}
       {tab === "settings" && (
         <div>
-          {/* 今日のメニュー */}
+          {/* 今日のメニュー（手動上書き） */}
           <div style={card}>
-            <div style={{ fontSize:13, fontWeight:700, color:"#334155", marginBottom:14 }}>🍽 今日のメニュー</div>
+            <div style={{ fontSize:13, fontWeight:700, color:"#334155", marginBottom:4 }}>🍽 今日のメニュー（手動上書き）</div>
+            <div style={{ fontSize:11, color:"#94a3b8", marginBottom:14, lineHeight:1.6 }}>
+              空欄のままだとローテーションが自動表示されます。<br />
+              今日だけ変えたい場合に入力してください。
+            </div>
             {[["breakfast","朝食 🌅"],["lunch","昼食 🌞"],["dinner","夕食 🌙"]].map(([key, label]) => (
               <div key={key} style={{ marginBottom:12 }}>
                 <label style={{ fontSize:11, color:"#94a3b8", display:"block", marginBottom:5 }}>{label}</label>
                 <TextInput
                   value={meals[key]}
                   onChange={v => setMeals(p => ({ ...p, [key]: v }))}
-                  placeholder="メニューを入力…"
+                  placeholder={`例: ${D_WEEKLY_MENU[today.getDay()][key]}`}
                 />
               </div>
             ))}
+            {(meals.breakfast || meals.lunch || meals.dinner) && (
+              <button onClick={() => setMeals(D_MEALS)} style={{
+                width:"100%", marginTop:4, padding:"8px 0",
+                background:"#f8fafc", border:"1px dashed #cbd5e1",
+                borderRadius:8, fontSize:11, color:"#94a3b8", cursor:"pointer",
+              }}>↩ クリアしてローテーションに戻す</button>
+            )}
           </div>
 
           {/* 予算設定 */}
